@@ -1,8 +1,14 @@
 package mock_sample_test
 
+import mock_sample.IEmailUtil
 import mock_sample.Order
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers
+import org.mockito.Mock
+import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
 
 /**
  * 驗證測試通常有三種方式
@@ -21,6 +27,15 @@ import org.junit.Test
  */
 class OrderTest {
 
+    // 使用Mockito Annotation來建立Mock物件
+    @Mock
+    lateinit var mockEmailUtil: IEmailUtil
+
+    @Before
+    fun setup(){
+        MockitoAnnotations.initMocks(this)
+    }
+
     @Test
     fun testInsertOrder(){
         val mockEmailUtil = MockEmailUtil()
@@ -32,5 +47,50 @@ class OrderTest {
         // 用mockEmailUtil.receiveEmail來驗證order.insertOrder中
         // 是否真的有呼叫IEmailUtil.sendToCustomer
         Assert.assertEquals(email,mockEmailUtil.receiveEmail)
+    }
+
+    @Test
+    fun testInsertOrderWithMockito(){
+        // 用Mockito產生Mock物件
+        val mockEmailUtil = mock(IEmailUtil::class.java)
+        val order = Order(mockEmailUtil)
+
+        val email = "test@gmail.com"
+        order.insertOrder(email, 3,200)
+
+        // 用mockEmailUtil.receiveEmail來驗證order.insertOrder中
+        // 是否真的有呼叫IEmailUtil.sendToCustomer
+        // 使用mockito的verify來驗證互動結果
+        verify(mockEmailUtil).sendToCustomer(email)
+    }
+
+    @Test
+    fun testInsertOrderWithMockitoInit(){
+        // 使用Annotation所建立的Mock物件
+        val order = Order(mockEmailUtil)
+
+        val email = "test@gmail.com"
+        order.insertOrder(email, 3,200)
+
+        // 用mockEmailUtil.receiveEmail來驗證order.insertOrder中
+        // 是否真的有呼叫IEmailUtil.sendToCustomer
+        // 使用mockito的verify來驗證互動結果 (anyXXX() => 任何參數皆可)
+        verify(mockEmailUtil).sendToCustomer(ArgumentMatchers.anyString())
+
+        /**
+         * 補充:
+         *
+         * //驗證呼叫1次
+         * verify(mockEmailUtil, times(1)).sendCustomer(userEmail)
+         *
+         * //驗證不能呼叫此方法
+         * verify(mockEmailUtil, never()).sendCustomer(userEmail)
+         *
+         * //驗證最少呼叫1次
+         * verify(mockEmailUtil, atLeast(1)).sendCustomer(userEmail)
+         *
+         * //驗證最多呼叫1次
+         * verify(mockEmailUtil, atMost(1)).sendCustomer(userEmail)
+         */
     }
 }

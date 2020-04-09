@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="di_sample_test.UmbrellaTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-04-09T03:04:23" hostname="EMCT-DANIEL" time="0.005">
+  <properties/>
+  <testcase name="totalPrice_sunnyDay" classname="di_sample_test.UmbrellaTest" time="0.005"/>
+  <testcase name="totalPrice_rainyDay" classname="di_sample_test.UmbrellaTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

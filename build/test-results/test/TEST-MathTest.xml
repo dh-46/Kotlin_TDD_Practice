@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MathTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-09T01:58:42" hostname="EMCT-DANIEL" time="0.002">
+<testsuite name="MathTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-09T02:20:53" hostname="EMCT-DANIEL" time="0.002">
   <properties/>
-  <testcase name="testNum1LessNum2_minShouldBeNum1" classname="MathTest" time="0.002"/>
+  <testcase name="testNum1LessNum2_minShouldBeNum1" classname="MathTest" time="0.001"/>
   <testcase name="addTestInResult" classname="MathTest" time="0.0"/>
   <testcase name="addTest" classname="MathTest" time="0.0"/>
   <testcase name="testNum2LessNum1_minShouldBeNum2" classname="MathTest" time="0.0"/>

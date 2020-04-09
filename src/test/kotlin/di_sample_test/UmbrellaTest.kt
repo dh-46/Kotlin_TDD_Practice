@@ -14,15 +14,15 @@ class UmbrellaTest {
      */
     @Test
     fun totalPrice_sunnyDay(){
-        val umbrella = Umbrella()
         // 1. 建立假的天氣物件
         val weather = StubWeather()
+        val umbrella = Umbrella(weather)
 
         // 2. 設定天氣為晴天狀態
         weather.fakeIsSunny = true
 
         // 3. 呼叫被測試的方法
-        val totalPrice = umbrella.totalPrice(weather, 1, 200)
+        val totalPrice = umbrella.totalPrice(1, 200) // weather, 1, 200)
         val expected = 180
         Assert.assertEquals(expected, totalPrice)
     }
@@ -32,12 +32,12 @@ class UmbrellaTest {
      */
     @Test
     fun totalPrice_rainyDay() {
-        val umbrella = Umbrella()
         val weather = StubWeather()
+        val umbrella = Umbrella(weather)
 
         weather.fakeIsSunny = false
 
-        val totalPrice = umbrella.totalPrice(weather, 2, 300)
+        val totalPrice = umbrella.totalPrice(2,300) //weather, 2, 300)
         val expected = 600
         Assert.assertEquals(expected,totalPrice)
     }

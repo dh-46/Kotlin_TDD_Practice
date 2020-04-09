@@ -21,13 +21,13 @@ package di_sample
  *     - 透過修改環境物件，如Singleton。
  *     - 較不建議。
  */
-class Umbrella {
+class Umbrella(private val weather: IWeather) {
 
     /**
      * 購買雨傘計價
      */
-    // fun totalPrice(quantity: Int, price: Int): Int {
-    fun totalPrice(weather: IWeather, quantity: Int, price: Int): Int {
+    fun totalPrice(quantity: Int, price: Int): Int { // 改建構式方式注入Weather
+    // fun totalPrice(weather: IWeather, quantity: Int, price: Int): Int {
         // 把weather提取成參數解除相依，使其相依於IWeather介面
         /**
          * 取得是否為晴天
